@@ -1,0 +1,4 @@
+﻿  TempHumSensorImpl.c
+C:\Users\simon\New SEP\IOT\4.Semester\TempHumSensorImpl.c(10,10): fatal error C1083: Cannot open include file: 'hih8120.h': No such file or directory
+  production.c
+  Generating Code...

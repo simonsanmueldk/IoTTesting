@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\VIAFreeRTOS-Windows\myTask2.c" />
+    <ClCompile Include="MyTaskTest.cpp" />
+    <ClCompile Include="..\VIAFreeRTOS-Windows\MySecondTask.c" />
+    <ClCompile Include="MySecondTaskTest.cpp" />
+    <ClCompile Include="FreeRTOS_FFF_MocksDefinitions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="FreeRTOS">
+      <UniqueIdentifier>{afa4f625-fc6d-421f-86e3-2d4a8fa73c94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeRTOS\src">
+      <UniqueIdentifier>{b55a4288-c557-4ed2-9423-2e2d6f3eb492}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FreeRTOS.h">
+      <Filter>FreeRTOS\src</Filter>
+    </ClInclude>
+    <ClInclude Include="task.h">
+      <Filter>FreeRTOS\src</Filter>
+    </ClInclude>
+    <ClInclude Include="semphr.h">
+      <Filter>FreeRTOS\src</Filter>
+    </ClInclude>
+    <ClInclude Include="queue.h">
+      <Filter>FreeRTOS\src</Filter>
+    </ClInclude>
+    <ClInclude Include="message_buffer.h">
+      <Filter>FreeRTOS\src</Filter>
+    </ClInclude>
+    <ClInclude Include="timers.h">
+      <Filter>FreeRTOS\src</Filter>
+    </ClInclude>
+    <ClInclude Include="event_groups.h">
+      <Filter>FreeRTOS\src</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeRTOS_FFF_MocksDeclaration.h" />
+  </ItemGroup>
+</Project>

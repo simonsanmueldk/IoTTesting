@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "86f75c57-08d4-420f-b41b-daa233571345": {
+      "ProjectGuid": "86f75c57-08d4-420f-b41b-daa233571345",
+      "DisplayName": "Production_IoT",
+      "ColorIndex": 0
+    },
+    "477c0bdd-2933-46e1-bab8-3828a1ffe9a7": {
+      "ProjectGuid": "477c0bdd-2933-46e1-bab8-3828a1ffe9a7",
+      "DisplayName": "IoT_ProductionCodeTest",
+      "ColorIndex": 1
+    },
+    "f2d91d7a-9ffa-4125-88aa-848821528d66": {
+      "ProjectGuid": "f2d91d7a-9ffa-4125-88aa-848821528d66",
+      "DisplayName": "Solution Items",
+      "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 3
+}

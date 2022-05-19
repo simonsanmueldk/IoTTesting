@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IoT_ProductionCodeTest", "..\IoT_ProductionCodeTest\IoT_ProductionCodeTest.vcxproj", "{477C0BDD-2933-46E1-BAB8-3828A1FFE9A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F2D91D7A-9FFA-4125-88AA-848821528D66}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\IOT\4.Semester\CO2_SensorImpl.c = ..\..\IOT\4.Semester\CO2_SensorImpl.c
+		..\..\IOT\4.Semester\DownLinkHandler.c = ..\..\IOT\4.Semester\DownLinkHandler.c
+		..\..\IOT\4.Semester\TempHumSensor.h = ..\..\IOT\4.Semester\TempHumSensor.h
+		..\..\IOT\4.Semester\TempHumSensorImpl.c = ..\..\IOT\4.Semester\TempHumSensorImpl.c
+		..\..\IOT\4.Semester\UpLinkHandler.c = ..\..\IOT\4.Semester\UpLinkHandler.c
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{477C0BDD-2933-46E1-BAB8-3828A1FFE9A7}.Debug|x64.ActiveCfg = Debug|x64
+		{477C0BDD-2933-46E1-BAB8-3828A1FFE9A7}.Debug|x64.Build.0 = Debug|x64
+		{477C0BDD-2933-46E1-BAB8-3828A1FFE9A7}.Debug|x86.ActiveCfg = Debug|Win32
+		{477C0BDD-2933-46E1-BAB8-3828A1FFE9A7}.Debug|x86.Build.0 = Debug|Win32
+		{477C0BDD-2933-46E1-BAB8-3828A1FFE9A7}.Release|x64.ActiveCfg = Release|x64
+		{477C0BDD-2933-46E1-BAB8-3828A1FFE9A7}.Release|x64.Build.0 = Release|x64
+		{477C0BDD-2933-46E1-BAB8-3828A1FFE9A7}.Release|x86.ActiveCfg = Release|Win32
+		{477C0BDD-2933-46E1-BAB8-3828A1FFE9A7}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BEB1649F-8B6C-422B-84B0-DBAE54AE278B}
+	EndGlobalSection
+EndGlobal
