@@ -36,7 +36,7 @@
     <IncludePath>C:\Users\simon\New SEP\Testing\VIAFreeRTOSTest;C:\Users\simon\New SEP\IOT\4.Semester;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemGroup>
-    <ClCompile Include="TempHumTest.cpp" />
+    <ClCompile Include="Testing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
