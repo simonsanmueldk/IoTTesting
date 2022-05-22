@@ -33,7 +33,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\simon\New SEP\Testing\VIAFreeRTOSTest;C:\Users\simon\New SEP\IOT\4.Semester;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\simon\New SEP\IOT\4.Semester\drivers;C:\Users\simon\New SEP\Testing\VIAFreeRTOSTest;C:\Users\simon\New SEP\IOT\4.Semester;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="Testing.cpp" />

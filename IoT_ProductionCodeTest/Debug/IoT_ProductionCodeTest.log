@@ -1,2 +1,9 @@
 ﻿  Testing.cpp
+C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(133,38): warning C4244: '=': conversion from 'double' to 'uint16_t', possible loss of data
+C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(143,41): warning C4244: '=': conversion from 'double' to 'uint16_t', possible loss of data
+C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(154,38): warning C4244: '=': conversion from 'double' to 'uint16_t', possible loss of data
+C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(155,41): warning C4244: '=': conversion from 'double' to 'uint16_t', possible loss of data
+C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(170,2): warning C4002: too many arguments for function-like macro invocation 'EXPECT_TRUE'
+C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(191,2): warning C4002: too many arguments for function-like macro invocation 'EXPECT_TRUE'
+C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(212,2): warning C4002: too many arguments for function-like macro invocation 'EXPECT_TRUE'
   IoT_ProductionCodeTest.vcxproj -> C:\Users\simon\New SEP\Testing\Production_IoT\Debug\IoT_ProductionCodeTest.exe
