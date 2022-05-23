@@ -35,7 +35,6 @@ FAKE_VOID_FUNC(tempHum_getDataFromTempHumSensorTask);
 FAKE_VALUE_FUNC(uint16_t, get_humidity_data);
 FAKE_VALUE_FUNC(uint16_t, get_temperature_data);
 FAKE_VALUE_FUNC(hih8120_driverReturnCode_t, hih8120_wakeup);
-//FAKE_VALUE_FUNC(Temp_Humidty_sensor_create);
 
 //FreeRTOS mocks
 FAKE_VOID_FUNC(vTaskDelay, TickType_t);
@@ -66,11 +65,8 @@ protected:
 	void SetUp() override {
 		RESET_FAKE(tempHum_init);
 		RESET_FAKE(tempHum_getDataFromTempHumSensorTask);
-		RESET_FAKE(vTaskDelay);
-		RESET_FAKE(xTaskDelayUntil);
 		RESET_FAKE(get_humidity_data);
 		RESET_FAKE(get_temperature_data);
-		RESET_FAKE(hih8120_wakeup);
 		FFF_RESET_HISTORY();
 	}
 	void TearDown() override {}
@@ -166,23 +162,27 @@ TEST_F(TempHumTaskTest, TempHum_GetDataFromSensor_Succes) {
 
 TEST_F(UplinkHandlerTest, UpLinkHandler_create_test)
 {
+	//Arrange
+	//Act
 	upLink_create();
-	EXPECT_TRUE(1, UpLinkHandler_create_fake.call_count);
+	//Assert
+	EXPECT_EQ(1, upLink_create_fake.call_count);
+	 
 }
 
-TEST_F(UplinkHandlerTest, UpLinkHandler_task_test)
+TEST_F(UplinkHandlerTest, Lora_handler_task_test)
 {
 	lora_handler_task();
-	//EXPECT_EQ(1, UpLinkHandler_task_fake.call_count);
+	EXPECT_EQ(1, lora_handler_task_fake.call_count);
 }
 
 TEST_F(UplinkHandlerTest, UpLinkHandler_startTask_test)
 {
 	upLinkHandler_StartTask();
-	//EXPECT_EQ(1, UpLinkHandler_startTask_fake.call_count);
+	EXPECT_EQ(1, upLinkHandler_StartTask_fake.call_count);
 }
 
-//---------------------------------------------------------CO2 Test-----------------------------------
+//---------------------------------------------------------CO2 Test--------------------------------------------------------
 //CO2Test
 
 TEST_F(CO2TaskTest, CO2_sensor_create_test)
@@ -209,7 +209,7 @@ TEST_F(CO2TaskTest, getCO2DataFromSensor_test)
 TEST_F(DownLinkHandlerTest, lora_DownLinkHandler_create_test)
 {
 	lora_DownLinkHandler_create();
-	EXPECT_TRUE(5, lora_DownLinkHandler_create_fake.call_count);
+	EXPECT_EQ(1, lora_DownLinkHandler_create_fake.call_count);
 }
 
 TEST_F(DownLinkHandlerTest, lora_DownLinkHandler_task_test)
