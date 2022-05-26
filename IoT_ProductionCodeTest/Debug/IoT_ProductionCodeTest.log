@@ -1,7 +1,7 @@
 ﻿  Testing.cpp
-C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(136,38): warning C4244: '=': conversion from 'double' to 'uint16_t', possible loss of data
-C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(146,41): warning C4244: '=': conversion from 'double' to 'uint16_t', possible loss of data
-C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(192,2): warning C4002: too many arguments for function-like macro invocation 'ASSERT_TRUE'
-C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(200,2): warning C4002: too many arguments for function-like macro invocation 'ASSERT_FALSE'
-C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(216,2): warning C4002: too many arguments for function-like macro invocation 'EXPECT_TRUE'
+C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(137,38): warning C4244: '=': conversion from 'double' to 'uint16_t', possible loss of data
+C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(147,41): warning C4244: '=': conversion from 'double' to 'uint16_t', possible loss of data
+C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(190,2): warning C4002: too many arguments for function-like macro invocation 'ASSERT_TRUE'
+C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(198,2): warning C4002: too many arguments for function-like macro invocation 'ASSERT_FALSE'
+C:\Users\simon\New SEP\Testing\IoT_ProductionCodeTest\Testing.cpp(213,2): warning C4002: too many arguments for function-like macro invocation 'EXPECT_TRUE'
   IoT_ProductionCodeTest.vcxproj -> C:\Users\simon\New SEP\Testing\Production_IoT\Debug\IoT_ProductionCodeTest.exe

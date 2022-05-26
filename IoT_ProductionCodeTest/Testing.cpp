@@ -64,6 +64,7 @@ FAKE_VOID_FUNC(lora_DownLinkHandler_startTask);
 FAKE_VOID_FUNC(upLinkHandler_StartTask);
 FAKE_VOID_FUNC(upLink_create);
 FAKE_VOID_FUNC(lora_handler_task);
+FAKE_VOID_FUNC(send);
 
 
 
@@ -121,7 +122,7 @@ protected:
 		RESET_FAKE(upLinkHandler_StartTask);
 		RESET_FAKE(upLink_create);
 		RESET_FAKE(lora_handler_task);
-		RESET_FAKE(vTaskDelay);
+		RESET_FAKE(send);
 		RESET_FAKE(xMessageBufferReceive);
 		FFF_RESET_HISTORY();
 	}
@@ -170,10 +171,7 @@ TEST_F(TempHumTaskTest, EventGroupSet_called_correctly_when_HIH8120_OK) {
 //---------------------------------------------------------Uplink Testing---------------------------------------------------
 TEST_F(UplinkHandlerTest, UpLinkHandler_create_IsCalled_test)
 {
-	//Arrange
-	//Act
 	upLink_create();
-	//Assert
 	EXPECT_EQ(1, upLink_create_fake.call_count);
 }
 
@@ -188,7 +186,7 @@ TEST_F(UplinkHandlerTest, more_than_zeroBytes_sent)
 {
 	size_t xBytesSent;
 	xBytesSent = 5;
-	lora_handler_task();
+	send();
 	ASSERT_TRUE(xBytesSent, xMessageBufferReceive);
 }
 
@@ -196,9 +194,8 @@ TEST_F(UplinkHandlerTest, zeroBytes_sent)
 {
 	size_t xBytesSent;
 	xBytesSent = 0;
-	lora_handler_task();
-	ASSERT_FALSE(xBytesSent, xMessageBufferReceive);
-	
+	send();
+	ASSERT_FALSE(xBytesSent, xMessageBufferReceive);	
 }
 
 TEST_F(UplinkHandlerTest, UpLinkHandler_startTask_IsCalled_test)
