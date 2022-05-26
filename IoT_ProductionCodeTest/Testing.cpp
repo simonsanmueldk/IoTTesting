@@ -3,6 +3,8 @@
  *
  * Created: 18/05/2022 12.49.21
  *  Author: Simon Samuel & Chen
+ * Simon: Responisble for UpLinkHandler tests and TempHumSensorImpl tests
+ * Chen: Responisble for DownLinkHandler tests and CO2_SensorImpl tests
  */
 
 #include "gtest/gtest.h"
@@ -15,7 +17,8 @@ extern "C" {
 #include "task.h"
 #include "semphr.h"
 #include "message_buffer.h"
-#include <TempHumSensor.h>
+//#include <TempHumSensor.h>
+//#include <CO2_Sensor.h>
 #include <event_groups.h>
 //#include <serial.h>
 
@@ -25,16 +28,18 @@ uint16_t fakeTemperature = 30;
 uint16_t fakeHumidity = 25;
 
 
+
 //Drivers included
 #include "hih8120.h"
 #include "mh_z19.h"
 }
 //Temperature humidity mocks 
 FAKE_VOID_FUNC(tempHum_init);
-FAKE_VOID_FUNC(tempHum_getDataFromTempHumSensorTask);
+FAKE_VOID_FUNC(tempHum_Task);
 FAKE_VALUE_FUNC(uint16_t, get_humidity_data);
 FAKE_VALUE_FUNC(uint16_t, get_temperature_data);
 FAKE_VALUE_FUNC(hih8120_driverReturnCode_t, hih8120_wakeup);
+FAKE_VALUE_FUNC(hih8120_driverReturnCode_t, hih8120_measure);
 
 //FreeRTOS mocks
 FAKE_VOID_FUNC(vTaskDelay, TickType_t);
@@ -43,11 +48,10 @@ FAKE_VOID_FUNC(xTaskDelayUntil, TickType_t*, TickType_t);
 FAKE_VOID_FUNC(xMessageBufferReceive);
 FAKE_VOID_FUNC(xEventGroupWaitBits);
 
-
 //Co2 Mocks
 FAKE_VOID_FUNC(CO2_sensor_create);
 FAKE_VOID_FUNC(myCo2CallBack);
-FAKE_VALUE_FUNC(float, mh_z19_get_CO2_data);
+FAKE_VALUE_FUNC(float, get_CO2_data);
 FAKE_VOID_FUNC(CO2_taskRun);
 FAKE_VOID_FUNC(CO2_Sensor_Task);
 
@@ -68,9 +72,11 @@ class TempHumTaskTest : public ::testing::Test {
 protected:
 	void SetUp() override {
 		RESET_FAKE(tempHum_init);
-		RESET_FAKE(tempHum_getDataFromTempHumSensorTask);
+		RESET_FAKE(tempHum_Task);
 		RESET_FAKE(get_humidity_data);
 		RESET_FAKE(get_temperature_data);
+		RESET_FAKE(hih8120_wakeup);
+		RESET_FAKE(hih8120_measure);
 		RESET_FAKE(xEventGroupWaitBits);
 		FFF_RESET_HISTORY();
 	}
@@ -86,6 +92,7 @@ protected:
 		RESET_FAKE(myCo2CallBack);
 		RESET_FAKE(CO2_taskRun);
 		RESET_FAKE(CO2_Sensor_Task);
+		RESET_FAKE(get_CO2_data);
 		RESET_FAKE(vTaskDelay);
 		FFF_RESET_HISTORY();
 
@@ -123,13 +130,6 @@ protected:
 
 
 //--Temperature humidity Testing
-
-//Initalisation correct test
-TEST_F(TempHumTaskTest, tempHum_init_calledDuringInitialisation) {
-	tempHum_init();
-	ASSERT_EQ(1, tempHum_init_fake.call_count);
-}
-
 //Get humidity test
 TEST_F(TempHumTaskTest, TempHum_getHumididty_success) {
 	//Arrange
@@ -150,21 +150,23 @@ TEST_F(TempHumTaskTest, TempHum_getTemperature_success) {
 	ASSERT_EQ(30.0, fakeTemperature);
 }
 
-
-//Get data from sensor test
-TEST_F(TempHumTaskTest, TempHum_GetDataFromSensor_Succes) {
+TEST_F(TempHumTaskTest, driver_wakeup_called_when_HIH8120_OK) {
 	//Arrange
-	get_humidity_data_fake.return_val = 25.0;
-	get_temperature_data_fake.return_val = 30.0;
+	int driverState = HIH8120_OK;
 	//Act
-	tempHum_getDataFromTempHumSensorTask();
-	//Assert
-	ASSERT_EQ(xTaskDelayUntil_fake.call_count, 4);
-	ASSERT_EQ(xEventGroupWaitBits_fake.call_count, 1);
+	tempHum_Task();
+	ASSERT_EQ(driverState, hih8120_wakeup());
 
-	EXPECT_EQ(fakeHumidity, get_humidity_data_fake.return_val);
-	EXPECT_EQ(fakeTemperature, get_temperature_data_fake.return_val);
 }
+
+TEST_F(TempHumTaskTest, EventGroupSet_called_correctly_when_HIH8120_OK) {
+	//Arrange
+	int driverState = HIH8120_OK;
+	//Act
+	tempHum_Task();
+	ASSERT_EQ(driverState, hih8120_measure());
+}
+
 //---------------------------------------------------------Uplink Testing---------------------------------------------------
 TEST_F(UplinkHandlerTest, UpLinkHandler_create_IsCalled_test)
 {
@@ -178,10 +180,8 @@ TEST_F(UplinkHandlerTest, UpLinkHandler_create_IsCalled_test)
 TEST_F(UplinkHandlerTest, Lora_handler_task_IsCalled_test)
 {
 	lora_handler_task();
-	
-	EXPECT_EQ(1, lora_handler_task_fake.call_count); //Method runs?
-	//ASSERT_EQ(1, vTaskDelay_fake.call_count); //Task delay called 1 time?
-	//ASSERT_EQ(1, xMessageBufferReceive_fake.call_count); //Message buffer recieved
+	EXPECT_EQ(1, lora_handler_task_fake.call_count); 
+
 }
 
 TEST_F(UplinkHandlerTest, more_than_zeroBytes_sent)
@@ -218,17 +218,19 @@ TEST_F(CO2TaskTest, CO2_sensor_create_test)
 
 TEST_F(CO2TaskTest, getCO2Data_test)
 {
-	mh_z19_get_CO2_data_fake.return_val = 0.0;
-	mh_z19_get_CO2_data();
+	
+	get_CO2_data_fake.return_val = 1.0;
+	get_CO2_data();
 	EXPECT_EQ(0.0, co2_data);
+	
 }
 
 TEST_F(CO2TaskTest, getCO2DataFromSensor_test)
 {
-	mh_z19_get_CO2_data_fake.return_val = 0.0;
+	get_CO2_data_fake.return_val = 1.0;
 	CO2_Sensor_Task();
 
-	//EXPECT_EQ(co2_data, mh_z19_get_CO2_data_fake.call_count);
+	EXPECT_EQ(co2_data, get_CO2_data_fake.call_count);
 }
 //------------------------------------------------------Downlink test-------------------------------------------------------
 TEST_F(DownLinkHandlerTest, lora_DownLinkHandler_create_test)
