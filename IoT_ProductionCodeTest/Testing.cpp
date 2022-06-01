@@ -1,14 +1,17 @@
 /*
  * Testing.cpp
- *
- * Created: 19/05/2022 12.49.21
- * Authors: Simon Samuel & Junjie Chen
- * Simon: Responisble for UpLinkHandler tests and TempHumSensorImpl tests
- * Chen: Responisble for DownLinkHandler tests and CO2_SensorImpl tests
+ *Created: 19/05/2022 12.49.21
+ *Authors: Simon Samuel & Junjie Chen
+ *Simon: Responisble for UpLinkHandler tests and TempHumSensorImpl tests
+ *Chen: Responisble for DownLinkHandler tests and CO2_SensorImpl tests
  */
 
 #include "gtest/gtest.h"
 #include "C:\Users\simon\New SEP\Testing\fff-master\fff.h"
+/*
+Insert your fff.h location and remove line above
+#include "../../fff/fff.h"
+*/
 
 DEFINE_FFF_GLOBALS
 extern "C" {
@@ -18,9 +21,9 @@ extern "C" {
 #include "message_buffer.h"
 #include <event_groups.h>
 
-uint16_t co2_data;
+	uint16_t co2_data;
 
-//Drivers included
+	//Drivers included
 #include "hih8120.h"
 #include "mh_z19.h"
 
@@ -89,7 +92,6 @@ protected:
 	}
 	void TearDown() override {}
 };
-
 
 //DonwlinkHandler Setup
 class DownLinkHandlerTest : public ::testing::Test {
@@ -160,7 +162,7 @@ TEST_F(UplinkHandlerTest, UpLinkHandler_create_IsCalled_test)
 TEST_F(UplinkHandlerTest, Lora_handler_task_IsCalled_test)
 {
 	lora_handler_task();
-	EXPECT_EQ(1, lora_handler_task_fake.call_count); 
+	EXPECT_EQ(1, lora_handler_task_fake.call_count);
 
 }
 
@@ -177,7 +179,7 @@ TEST_F(UplinkHandlerTest, zeroBytes_sent)
 	size_t xBytesSent;
 	xBytesSent = 0;
 	send();
-	ASSERT_FALSE(xBytesSent, xMessageBufferReceive);	
+	ASSERT_FALSE(xBytesSent, xMessageBufferReceive);
 }
 
 TEST_F(UplinkHandlerTest, UpLinkHandler_startTask_IsCalled_test)
@@ -199,7 +201,7 @@ TEST_F(CO2TaskTest, getCO2Data_test)
 {
 	get_CO2_data_fake.return_val = 5.0;
 	get_CO2_data();
-	EXPECT_EQ(get_CO2_data_fake.return_val, 5.0);	
+	EXPECT_EQ(get_CO2_data_fake.return_val, 5.0);
 }
 
 TEST_F(CO2TaskTest, getCO2DataFromSensor_test)
